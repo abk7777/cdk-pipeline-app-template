@@ -1,0 +1,58 @@
+{
+    "cdk_app": {
+        "app_name": "MyApp",
+        "app_stage": "dev-us-east-1",
+        "variables": {
+            "lambda_layers": [
+                {
+                    "layerVersionName": "MyAppUtils",
+                    "description": "Utilities for working with data and AWS services",
+                    "layerPath": "../../layers/MyAppUtils/python"
+                }
+            ],
+            "key_pair": "my-app-key-pair",
+            "github_personal_access_token_secret_arn": "<arn>"
+        },
+        "tags": {
+            "org": "organization",
+            "app": "my-app"
+        }
+    },
+    "cdk_pipeline": {
+        "organization": "organization",
+        "repository_owner": "organization",
+        "repository_name": "my-app",
+        "branch": "main",
+        "build_environment": {
+            "account_id": "***************",
+            "region": "us-east-1"
+        },
+        "deployment_environments": {
+            "development": [
+                {
+                    "name": "dev-us-east-1",
+                    "env": {
+                        "account_id": "***************",
+                        "region": "us-east-1"
+                    }
+                }
+            ],
+            "production": [
+                {
+                    "name": "prod-us-east-1",
+                    "env": {
+                        "account_id": "***************",
+                        "region": "us-east-1"
+                    }
+                },
+                {
+                    "name": "prod-us-west-1",
+                    "env": {
+                        "account_id": "***************",
+                        "region": "us-west-1"
+                    }
+                }
+            ]
+        }
+    }
+}

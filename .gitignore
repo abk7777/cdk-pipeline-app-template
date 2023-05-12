@@ -6,3 +6,24 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+cdk.context.json
+
+.vscode/
+
+# Virtual Environment
+.venv*
+
+# # Pipeline modules not being used during development (uncomment until ready to use)
+# bin/pipeline.ts
+# lib/pipeline-stack.ts
+# lib/app-stage.ts
+
+# Lambda Layer assets
+layers/MyAppUtils/python/*
+
+# secrets
+*.pem
+___*
+.env
+# config.json # Uncomment before first commit to avoid pushing sensitive information
