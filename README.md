@@ -33,6 +33,15 @@ This is a blank project for CDK development with TypeScript with a prepared CDK 
 └── tsconfig.json
 ```
 
+## Environment
+The app requires the following environment variables to be set.
+```bash
+# .env
+DEV_ACCOUNT_ID=<account-id>
+AWS_REGION=<region>
+```
+Copy the .env.example file to .env and update the values.
+
 ## CDK Pipeline Deployments
 The pipeline is disabled by default. To enable it, follow the steps.
 * Uncomment the Pipeline modules in .gitignore
