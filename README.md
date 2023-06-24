@@ -1,15 +1,6 @@
 # Welcome to your CDK TypeScript project
 
-This is a blank project for CDK development with TypeScript with a prepared CDK Pipeline that is disabled by default. Using this approach makes it possible to first develop the app without the pipeline, and when it is ready to deploy the pipeline can be enabled.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+Customizable CDK TypeScript project template that decouples application development from pipeline integration. The structure allows developers to build and test AWS applications without the overhead of a CI/CD pipeline. When ready for pipeline integration, the transition is as easy as uncommenting code and redefining deployment stages.
 
 ## Project Structure
 ```bash
@@ -33,12 +24,33 @@ This is a blank project for CDK development with TypeScript with a prepared CDK 
 └── tsconfig.json
 ```
 
+## Prerequisites
+<!-- TODO docs link -->
+* Make sure you have bootstrapped the account you are deploying to with `cdk bootstrap`
+
+## Quickstart
+* Update `.env` with the appropriate values for `CDK_DEFAULT_ACCOUNT` and `CDK_DEFAULT_REGION`
+* Update `config.json` with the appropriate values for `cdk_app`
+    * `app_name`
+    * `github_personal_access_token_secret_arn`
+    * `tags.org`, `tags.app`
+* Develop your application in `lib/app-stack.ts`, modules in `lib/app/` and deploy from `bin/app.ts`
+* When ready to deploy the pipeline, update `config.json` with the appropriate values for `cdk_pipeline`
+    * `organization`
+    * `repository_owner`
+    * `repository_name`
+    * `account_id` for the `build` and `deployment` environments, and the production `account_id` under the `production` field
+* Follow the steps in [CDK Pipeline Deployments](#cdk-pipeline-deployments) to enable the pipeline
+* Add your stage definition to `lib/app-stage.ts` and declare them in `lib/pipeline-stack.ts`
+* Push your code to the `main` branch
+* Deploy the pipeline with `cdk deploy`
+
 ## Environment
 The app requires the following environment variables to be set.
 ```bash
 # .env
-DEV_ACCOUNT_ID=<account-id>
-AWS_REGION=<region>
+CDK_DEFAULT_ACCOUNT=<account-id>
+CDK_DEFAULT_REGION=<region>
 ```
 Copy the .env.example file to .env and update the values.
 
@@ -48,7 +60,20 @@ The pipeline is disabled by default. To enable it, follow the steps.
 * Uncomment bin/pipeline.ts
 * Uncomment lib/app-stage.ts and lib/pipeline-stack.ts
 * Change the line in cdk.json from `"app": "npx ts-node --prefer-ts-exts bin/app.ts"` to `"app": "npx ts-node --prefer-ts-exts bin/pipeline.ts"`
-* Edit the appropriate lines in package.json
+    ```tsx
+    // change this:
+    {
+    "app": "npx ts-node --prefer-ts-exts bin/pipeline.ts",
+    ...
+    }
+
+    // to this:
+    {
+    "app": "npx ts-node --prefer-ts-exts bin/app.ts",
+    ...
+    }
+    ```
+* Finally, edit the appropriate lines in package.json
     ```json
     {
       "name": "app", // Change the name of the app
@@ -60,3 +85,9 @@ The pipeline is disabled by default. To enable it, follow the steps.
     ```
 * Make sure imports and resource configurations are correct before running `cdk diff` or `cdk deploy`
 * If using tests, make sure to update the test files to reflect the changes
+
+## CDK Usage
+
+* `cdk deploy`      deploy this stack to your default AWS account/region
+* `cdk diff`        compare deployed stack with current state
+* `cdk synth`       emits the synthesized CloudFormation template

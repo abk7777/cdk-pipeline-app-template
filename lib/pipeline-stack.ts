@@ -22,7 +22,7 @@
 //         });
 
 //         // const devStage = pipeline.addStage(new AppStage(this, "dev", {
-//         //     env: { account: process.env.DEV_ACCOUNT_ID, region: process.env.DEV_ACCOUNT_REGION }}));
+//         //     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.DEV_ACCOUNT_REGION }}));
 
 //         // // devStage.addPost(new ManualApprovalStep('Approve'));
 
