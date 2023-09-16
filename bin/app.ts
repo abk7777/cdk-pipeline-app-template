@@ -9,8 +9,8 @@ import * as config from '../config.json'
 const app = new cdk.App();
 const appStack = new AppStack(app, `${config.cdk_app.app_name}Stack`, `${config.cdk_app.app_stage}`, {
     env: {
-        account: process.env.DEV_ACCOUNT_ID,
-        region: process.env.AWS_REGION
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION
     }
 });
 

@@ -5,12 +5,12 @@
         "variables": {
             "lambda_layers": [
                 {
-                    "layerVersionName": "MyAppUtils",
+                    "layerVersionName": "MyAppExampleUtils",
                     "description": "Utilities for working with data and AWS services",
                     "layerPath": "../../layers/MyAppUtils/python"
                 }
             ],
-            "key_pair": "my-app-key-pair",
+            "key_pair": "my-app-example-key-pair",
             "github_personal_access_token_secret_arn": "<arn>"
         },
         "tags": {
