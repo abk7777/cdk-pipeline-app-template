@@ -29,6 +29,7 @@ Customizable CDK TypeScript project template that decouples application developm
 * Make sure you have bootstrapped the account you are deploying to with `cdk bootstrap`
 
 ## Quickstart
+* Clone the repository and remove the `.git` directory: `rm -rf .git`
 * Update `.env` with the appropriate values for `CDK_DEFAULT_ACCOUNT` and `CDK_DEFAULT_REGION`
 * Update `config.json` with the appropriate values for `cdk_app`
     * `app_name`
@@ -54,7 +55,9 @@ CDK_DEFAULT_REGION=<region>
 ```
 Copy the .env.example file to .env and update the values.
 
-## CDK Pipeline Deployments
+## Usage
+
+### CDK Pipeline Deployments
 The pipeline is disabled by default. To enable it, follow the steps.
 * Uncomment the Pipeline modules in .gitignore
 * Uncomment bin/pipeline.ts
@@ -86,7 +89,7 @@ The pipeline is disabled by default. To enable it, follow the steps.
 * Make sure imports and resource configurations are correct before running `cdk diff` or `cdk deploy`
 * If using tests, make sure to update the test files to reflect the changes
 
-## CDK Usage
+### CDK Usage
 
 * `cdk deploy`      deploy this stack to your default AWS account/region
 * `cdk diff`        compare deployed stack with current state
